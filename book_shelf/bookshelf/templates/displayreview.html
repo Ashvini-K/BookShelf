@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<body id="page">
+    
+
+<h5>Book Reviews</h5>
+<br>
+
+    
+        {% for review in reviews.items  %}
+            <article class="media content-section">
+                <div class="media-body">
+                <div class="article-metadata">
+                    <small class="text-muted">{{ review.date_posted.strftime('%Y-%m-%d') }}</small>
+                </div>
+               
+                    
+                
+                <span style="font-weight: bold;">User: {{ review.reviewer.username }}</span><br>
+                    <span style="font-weight: bold;">Rating: {{ review.rating }}</span>
+                    <p class="article-content">{{ review.comment }}</p>
+                </div>
+            </article>   
+        {% endfor %}
+
+        {% for page_num in reviews.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2)  %}
+            {% if page_num %}
+                 {% if reviews.page == page_num %}
+                    <a class="btn btn-info mb-4" href="{{ url_for('displayreview', page=page_num) }}">{{ page_num }}</a>
+                 {% else %}   
+                    <a class="btn btn-outline-info mb-4" href="{{ url_for('displayreview', page=page_num) }}">{{ page_num }}</a>
+                 {% endif %}
+                   
+                {% else %}
+                    ...
+            {% endif %}    
+        {% endfor %}  
+
+{% endblock  %}
+</body>
+
+

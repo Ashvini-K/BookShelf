@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+     <article class="media content-section">
+
+            <div class="media-body">
+              <div class="article-metadata">
+                
+                <small class="text-muted">{{ review.date_posted.strftime('%Y-%m-%d') }}</small>
+                
+              </div>
+              <h2><a class="article-title" href="{{ url_for('review', review_id=review.id) }}">{{ review.customer_id.username }}</a></h2>
+              <h2 class="article-title">{{ review.customer_id.username }}</h2>
+              <h2 class="article-title">{{ review.rating }}</h2>
+              <p class="article-content">{{ review.comment }}</p>
+            </div>
+    </article>
+
+   
+{% endblock %}

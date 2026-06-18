@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="content-section">
+        <form action="/home" method="POST">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Search</legend>
+
+                    <div class="radio">
+                       
+                            {% for subfield in form.radio_group %}
+                            <p>
+                                {{ subfield }}
+                                {{ subfield.label }}
+                               
+                            </p>
+                            {% endfor %}
+                       
+                    </div>
+
+                    <div class="form-group">
+                        {{ form.search.label(class="form-control-label") }}
+                        {% if form.search.errors %}
+                        {{ form.search(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.search.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                             {{ form.search(class="form-control form-control-lg") }}
+                        {% endif %}
+                       
+                    </div>
+                   
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>      
+    </div>
+   
+{% endblock  %}
